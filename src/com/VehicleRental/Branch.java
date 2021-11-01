@@ -21,10 +21,11 @@ public class Branch {
         bookings.clear();
     }
 
-    public void addVehicle(VehicleType type, Float price, int id){
+    public void addVehicle(VehicleType type, Float price){
+        totalNumberOfVehicles += 1;
+        int id = totalNumberOfVehicles;
         Vehicle vehicle = new Vehicle(type,price,id);
         vehicleList.put(id,vehicle);
-        totalNumberOfVehicles += 1;
     }
 
     private void sortVehicleList(){
