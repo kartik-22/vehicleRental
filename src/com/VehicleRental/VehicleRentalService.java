@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class VehicleRentalService {
     ArrayList <Branch> branches;
     int numberOfBranches = 0;
+
+    VehicleRentalService(){
+        branches = new ArrayList<Branch>();
+    }
 
     private void addBranch(){
         numberOfBranches += 1;
@@ -48,7 +51,7 @@ public class VehicleRentalService {
                     state = State.insideBranch;
                 }
                 case insideBranch : {
-                    System.out.println("1.Add Vehicle \n2.Book Vehicle \nDrop Vehicle \n");
+                    System.out.println("1.Add Vehicle \n2.Book Vehicle \n3.Drop Vehicle \n");
                     option = Integer.parseInt(reader.readLine());
                     switch (option){
                         case 1 : state = State.addVehicle;
@@ -57,7 +60,7 @@ public class VehicleRentalService {
                     }
                 }
                 case addVehicle : {
-                    System.out.println("Enter vehicle type and price\n1.Car\n2.Scooter\nBike\n");
+                    System.out.println("Enter vehicle type and price\n1.Car\n2.Scooter\n3.Bike\n");
                     option = Integer.parseInt(reader.readLine());
                     price = Float.parseFloat(reader.readLine());
                     Branch branch = branches.get(currentBranch);

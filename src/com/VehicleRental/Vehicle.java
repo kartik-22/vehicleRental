@@ -10,7 +10,7 @@ public class Vehicle {
     Float normalPrice;
     Float increasedPrice;
     Boolean isAvailable;
-    ArrayList<Boolean> availability =new ArrayList<Boolean>(Arrays.asList(new Boolean[24]));
+    ArrayList<Boolean> availability = new ArrayList<Boolean>(Arrays.asList(new Boolean[24]));
 
 
     Vehicle(VehicleType type, Float price, int id){

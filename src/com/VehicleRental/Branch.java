@@ -1,6 +1,7 @@
 package com.VehicleRental;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,8 +18,6 @@ public class Branch {
         totalNumberOfVehicles = 0;
         vehiclesRented = 0;
         isPriceIncreased = false;
-        vehicleList.clear();
-        bookings.clear();
     }
 
     public void addVehicle(VehicleType type, Float price){
@@ -28,29 +27,31 @@ public class Branch {
         vehicleList.put(id,vehicle);
     }
 
-    private void sortVehicleList(){
-        //
-    }
-
     public void showVehicleList(){
-        sortVehicleList();
+        ArrayList<Vehicle> displayList = new ArrayList<Vehicle>();
         for (Map.Entry mapElement : vehicleList.entrySet()){
             Vehicle vehicle = (Vehicle) mapElement.getValue();
             if(vehicle.isAvailable){
-                System.out.print(vehicle.vehicleId + " ");
-                if(isPriceIncreased){
-                    System.out.print(vehicle.increasedPrice + " " );
-                }
-                else{
-                    System.out.print(vehicle.normalPrice + " " );
-                }
-                for(int j=0;j<24;j++){
-                    if(vehicle.availability.get(j)){
-                        System.out.print(j + " ");
-                    }
-                }
-                System.out.print("\n");
+                displayList.add(vehicle);
             }
+        }
+
+        displayList.sort(new PriceComparator());
+        for(int i=0;i<displayList.size();i++){
+            Vehicle vehicle = displayList.get(i);
+            System.out.print(vehicle.vehicleId + " ");
+            if(isPriceIncreased){
+                System.out.print(vehicle.increasedPrice + " " );
+            }
+            else{
+                System.out.print(vehicle.normalPrice + " " );
+            }
+            for(int j=0;j<24;j++){
+                if(vehicle.availability.get(j)){
+                    System.out.print(j + " ");
+                }
+            }
+            System.out.print("\n");
         }
     }
 
